@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Summarizer</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dark-mode.css') }}" id="dark-mode-style">
+    <style>
+      .input-group-append {
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .btn-clear {
+        background-color: transparent;
+        color: #6c757d;
+        border: none;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .btn-clear:hover {
+        color: #ff6655;
+        transition: color 0.3s ease;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container mt-5" id="app-container">
+      <button class="btn btn-light btn-toggle" onclick="toggleDarkMode()">Toggle Mode</button>
+      <div class="text-center">
+        <h1 class="mb-4">Text Summarizer</h1>
+        <form method="post" action="/">
+          <div class="form-group position-relative">
+            <label for="url" class="float-left"> Enter URL <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="Enter a valid URL to summarize content from a webpage"></i>
+            </label>
+            <div class="input-group">
+              <input type="text" class="form-control" id="url" name="url">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-light btn-clear" onclick="clearInput('url')">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <p class="text-center">OR</p>
+          <div class="form-group position-relative">
+            <label for="text_input" class="float-left"> Input Text <i class="fas fa-info-circle" data-toggle="tooltip" data-placement="top" title="Or enter text directly for summarization"></i>
+            </label>
+            <div class="input-group">
+              <textarea class="form-control" id="text_input" name="text_input" rows="4"></textarea>
+              <div class="input-group-append">
+                <button type="button" class="btn btn-light btn-clear" onclick="clearInput('text_input')">
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary"> Summarize <i class="fas fa-play-circle"></i>
+          </button>
+        </form> {% if summary %} <div class="mt-4">
+          <h2>Summary:</h2>
+          <p>{{ summary }}</p>
+        </div> {% endif %}
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script>
+      $(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+      // Toggle dark mode
+      const appContainer = document.getElementById('app-container');
+      const darkModeStyle = document.getElementById('dark-mode-style');
+      let darkModeEnabled = false;
+
+      function toggleDarkMode() {
+        darkModeEnabled = !darkModeEnabled;
+        appContainer.classList.toggle('dark-mode', darkModeEnabled);
+        darkModeStyle.href = darkModeEnabled ? "{{ url_for('static', filename='dark-mode.css') }}" : "";
+        // You can store the dark mode preference in a cookie or localStorage for persistence
+      }
+      // Clear input field
+      function clearInput(inputId) {
+        document.getElementById(inputId).value = '';
+      }
+    </script>
+  </body>
+</html>
