@@ -5,7 +5,7 @@
 ~~~
 1. Ideation Phase
     a) Empathy Map Canvas
-    2) Brain Storm & Prioritize Ideas
+    b) Brain Storm & Prioritize Ideas
 
 2. Project Design Phase
     a) Proposed Solution
