@@ -23,8 +23,13 @@
     a) Solution Performance
     b) Project Documentation
 ~~~
+
+- - - -
+
 ## Demonstration Link
-https://drive.google.com/file/d/1ACYkxTKTn0_Whm1fSXUWgUgCZMVDIXtc/view?usp=drive_link
+
+Click on the [demo link](https://drive.google.com/file/d/1ACYkxTKTn0_Whm1fSXUWgUgCZMVDIXtc/view?usp=drive_link) for a detailed video demonstration.
+
 - - - -
 
 ## Web App UI
